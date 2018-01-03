@@ -15,16 +15,13 @@ public class News {
     private String image ;
     // date
     private String date ;
-    // author name .
-    private String author ;
 
-    public News(String title,String summary , String section, String image, String date, String author) {
+    public News(String title,String summary , String section, String image, String date) {
         this.title = title;
         this.summary = summary;
         this.section = section;
         this.image = image;
         this.date = date;
-        this.author = author;
     }
 
     public String getTitle() {
@@ -47,7 +44,4 @@ public class News {
         return date;
     }
 
-    public String getAuthor() {
-        return author;
-    }
 }

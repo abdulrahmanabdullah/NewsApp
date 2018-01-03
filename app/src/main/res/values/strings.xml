@@ -5,4 +5,6 @@
     <string name="article_section">Article Setcion</string>
     <string name="article_date">1/1/2018:16:20 Am</string>
     <string name="article_author">Write Be :</string>
+    <string name="article_image">Pull image From URL</string>
+    <string name="hash_tag"> #</string>
 </resources>
