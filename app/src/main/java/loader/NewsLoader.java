@@ -1,6 +1,5 @@
 package loader;
 
-import android.app.ProgressDialog;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.util.Log;

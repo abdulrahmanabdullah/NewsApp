@@ -7,7 +7,7 @@ import android.util.Log;
 
 import abdulrahmanjavanrd.com.mynewsapp.R;
 import abdulrahmanjavanrd.com.mynewsapp.app.MainActivity;
-import abdulrahmanjavanrd.com.mynewsapp.error.CheckError;
+
 
 public class IntroActivity extends AppCompatActivity {
 

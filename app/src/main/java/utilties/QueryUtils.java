@@ -19,7 +19,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import abdulrahmanjavanrd.com.mynewsapp.error.CheckError;
 import abdulrahmanjavanrd.com.mynewsapp.model.News;
 
 /**
@@ -32,7 +31,7 @@ public class QueryUtils {
     private static final  int READ_TIMEOUT = 10000;
     private static final int CONNECT_TIMEOUT =15000 ;
     //TAG value.
-//    private static final String TAG = QueryUtils.class.getSimpleName();
+    private static final String TAG = QueryUtils.class.getSimpleName();
     private QueryUtils(){}
 
 
@@ -43,7 +42,7 @@ public class QueryUtils {
             jsonResponse = makeHttpRequest(url);
 
         }catch (IOException e){
-//           Log.e(CheckError.TAG,"Error with fetch data method "+e.getMessage());
+           Log.e(TAG,"Error with fetch data method "+e.getMessage());
         }
         List<News> news = extractJsonData(jsonResponse);
         return news;
@@ -55,7 +54,7 @@ public class QueryUtils {
        {
            url = new URL(theUrl);
        } catch (MalformedURLException e) {
-//           Log.e(CheckError.TAG,"Please check your Link URL "+ e.getMessage());
+           Log.e(TAG,"Please check your Link URL "+ e.getMessage());
        }
        return url ;
     }
@@ -75,10 +74,10 @@ public class QueryUtils {
                  inputStream = new BufferedInputStream(connection.getInputStream());
                 response = convertStreamToData(inputStream);
             }else {
-//                Log.i(CheckError.TAG,"Bad Connection Please check url");
+                Log.e(TAG,"Bad Connection Please check url");
             }
         }catch (IOException e){
-//            Log.e(CheckError.TAG,e.getMessage());
+            Log.e(TAG,e.getMessage());
         }
         finally {
             if (connection !=null)
@@ -98,7 +97,7 @@ public class QueryUtils {
               sb.append(line).append('\n');
            }
        }catch (IOException e){
-//          Log.e(CheckError.TAG,"Failed to Convert Stream to String "+ e.getMessage()) ;
+          Log.e(TAG,"Failed to Convert Stream to String "+ e.getMessage()) ;
        }
        return sb.toString();
     }
@@ -136,10 +135,10 @@ public class QueryUtils {
                        newsList.add(new News(webTitle,articleSummary,sectionName,thumbnail,date,webUrl));
                    }
                 }else{
-//                   Log.e(CheckError.TAG," JsonArray is empty,Please check syntax name. ");
+                   Log.e(TAG,"JsonArray is empty,Please check syntax name of key.");
                 }
             } catch (JSONException e) {
-//                Log.e(CheckError.TAG,"Failed JsonObject "+ e.getMessage());
+                Log.e(TAG,"Failed JsonObject "+ e.getMessage());
             }
             return newsList;
     }

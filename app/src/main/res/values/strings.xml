@@ -7,4 +7,6 @@
     <string name="article_author">Write Be :</string>
     <string name="article_image">Pull image From URL</string>
     <string name="hash_tag"> #</string>
+    <string name="empty_msg">No new News.</string>
+    <string name="check_network_connection">Can\'t load new data, Please check network connection.</string>
 </resources>
