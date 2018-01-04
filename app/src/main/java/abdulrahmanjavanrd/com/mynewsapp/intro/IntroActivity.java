@@ -7,6 +7,7 @@ import android.util.Log;
 
 import abdulrahmanjavanrd.com.mynewsapp.R;
 import abdulrahmanjavanrd.com.mynewsapp.app.MainActivity;
+import abdulrahmanjavanrd.com.mynewsapp.error.CheckError;
 
 public class IntroActivity extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class IntroActivity extends AppCompatActivity {
             try {
                 Thread.sleep(3000);
             } catch (Exception e) {
-                Log.e(TAG, "Can't forward to MainActivity");
+//                Log.e(CheckError.TAG, "Can't forward to MainActivity");
             }
             Intent mIntent = new Intent(IntroActivity.this, MainActivity.class);
             startActivity(mIntent);

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import abdulrahmanjavanrd.com.mynewsapp.R;
 import abdulrahmanjavanrd.com.mynewsapp.model.News;
@@ -24,22 +25,21 @@ public class MyAdapter extends BaseAdapter {
 
     private final String TAG = MyAdapter.class.getSimpleName();
     private Context context;
-    private ArrayList<News> mList;
+    private List<News> listOfNews = new ArrayList<>();
 
-
-    public MyAdapter(Context context, ArrayList<News> mList) {
+    public MyAdapter(Context context, List<News> listOfNews) {
         this.context = context;
-        this.mList = mList;
+        this.listOfNews = listOfNews;
     }
 
     @Override
     public int getCount() {
-        return mList.size();
+        return listOfNews.size();
     }
 
     @Override
     public News getItem(int position) {
-        return mList.get(position);
+        return listOfNews.get(position);
     }
 
     @Override
@@ -80,11 +80,12 @@ public class MyAdapter extends BaseAdapter {
     }
 
 
-    static class MyViewHolder {
-        ImageView imageView;
-        TextView txvTitle, txvSummary, txvSection, txvDate;
-    }
-
+    /**
+     * <p>In This method i try to convert Long text to small </p>
+     * I wrote some functions to help me , I hope it's true.
+     * @param summary of article
+     * @return small text .
+     */
     private String divideSummaryToQuarter(String summary) {
         String quarterText;
         int length = (int) Math.floor(summary.length()); // to get only int numbers .
@@ -103,5 +104,20 @@ public class MyAdapter extends BaseAdapter {
             quarterText = summary.substring(0, length / 2);
         }
         return quarterText + " ...";
+    }
+
+
+    /**
+     * @param mList List of news I call this method in onLoaderRest .
+     */
+    public void setListOfNews(List<News> mList) {
+       listOfNews.addAll(mList);
+//       notifyDataSetChanged();
+    }
+
+    // ViewHolder Class .
+    static class MyViewHolder {
+        ImageView imageView;
+        TextView txvTitle, txvSummary, txvSection, txvDate;
     }
 }
