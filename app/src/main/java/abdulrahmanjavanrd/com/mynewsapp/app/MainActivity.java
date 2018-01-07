@@ -4,12 +4,17 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -22,6 +27,7 @@ import java.util.List;
 import abdulrahmanjavanrd.com.mynewsapp.R;
 import abdulrahmanjavanrd.com.mynewsapp.adapter.MyAdapter;
 import abdulrahmanjavanrd.com.mynewsapp.model.News;
+import abdulrahmanjavanrd.com.mynewsapp.settings.SettingsActivity;
 import loader.NewsLoader;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
@@ -30,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private static final String TAG = MainActivity.class.getSimpleName();
     // Fetch 50 pages,And get last news,Then get some data for each articles like title,section,date,img,web url.
     private static final String REQUEST_URL = "https://content.guardianapis.com/search?q=/tags&page-size=50&order-by=newest&show-fields=shortUrl,thumbnail&show-blocks=body&api-key=test";
+    private static final String REUEST_URI =  "https://content.guardianapis.com/search?q=/tags";
     // Loader ID
     private static final int PROCESS_ID = 1;
     // ListView
@@ -85,7 +92,19 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Log.i(TAG, "onCreateLoader");
         if (id == PROCESS_ID) {
             Log.i(TAG, "Hi We receive this id = " + id);
-            return new NewsLoader(this, REQUEST_URL);
+            //TODO: separate URL . Then send it to loader .show-fields=shortUrl,thumbnail&show-blocks=body&api-key=test";
+            SharedPreferences mShared = PreferenceManager.getDefaultSharedPreferences(this);
+            String pageSize = mShared.getString(getString(R.string.news_page_size_key),getString(R.string.news_page_size_default));
+            String orderBy = mShared.getString(getString(R.string.news_order_by_key),getString(R.string.news_order_by_default));
+            Uri uri = Uri.parse(REUEST_URI);
+            Uri.Builder uriBuilder = uri.buildUpon() ;
+            uriBuilder.appendQueryParameter("order-by",orderBy);
+            uriBuilder.appendQueryParameter("page-size",pageSize);
+            uriBuilder.appendQueryParameter("show-fields","thumbnail");
+            uriBuilder.appendQueryParameter("show-blocks","body");
+            uriBuilder.appendQueryParameter("api-key","test");
+            Log.i(TAG,"short uri "+ uriBuilder.toString());
+            return new NewsLoader(this, uriBuilder.toString());
         }
         return null;
     }
@@ -133,5 +152,25 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             progressBar.setVisibility(View.GONE);
         }
         return isConnected;
+    }
+
+    /**
+     * Create Menu .
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.settings_menu,menu);
+        return true ;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.settings_menu){
+            Intent i = new Intent(this,SettingsActivity.class );
+            startActivity(i);
+            return true ;
+        }
+        return true ;
     }
 }

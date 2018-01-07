@@ -19,6 +19,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".app.MainActivity" />
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:label="@string/settings_menu"
+			android:parentActivityName=".app.MainActivity"
+            >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".app.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

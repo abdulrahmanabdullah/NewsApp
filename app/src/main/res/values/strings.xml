@@ -9,4 +9,29 @@
     <string name="hash_tag"> #</string>
     <string name="empty_msg">No new News.</string>
     <string name="check_network_connection">Can\'t load new data, Please check network connection.</string>
+    <!-- Setting Name .-->
+	<string name="settings_menu">Settings</string>
+    <!-- SubTitle Message -->
+    <string name="user_preferences">User Preferences</string>
+    <!--Page Size -->
+	<string name="news_page_size_label">Page Size</string>
+    <string name="news_page_size_key" translatable="false">page-size</string>
+    <string name="news_page_size_default" translatable="false">2</string>
+
+    <!--FragmentManager Tag -->
+    <string name="setting_fragment_tag">SettingsFragment</string>
+    
+    <!-- List Preferences Title -->
+    <string name="news_order_by_title">Order By</string>
+
+    <!--All items in Order-by labels -->
+    <string name="news_order_by_key" translatable="false">order-by</string>
+    <string name="news_order_by_default" translatable="false">newest</string>
+    <string name="news_order_by_newest_label">newest</string>
+    <string name="news_order_by_oldest_label">oldest</string>
+    <string name="news_order_by_relevance_label">relevance</string>
+    <!-- All items in order-by Values  -->
+    <string name="news_order_by_newest_value">newest</string>
+    <string name="news_order_by_oldest_value">oldest</string>
+    <string name="news_order_by_relevance_value">relevance</string>
 </resources>
