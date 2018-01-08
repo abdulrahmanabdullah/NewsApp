@@ -95,6 +95,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             //TODO: separate URL . Then send it to loader .show-fields=shortUrl,thumbnail&show-blocks=body&api-key=test";
             SharedPreferences mShared = PreferenceManager.getDefaultSharedPreferences(this);
             String pageSize = mShared.getString(getString(R.string.news_page_size_key),getString(R.string.news_page_size_default));
+            // show me length of page-size :
+            Log.i(TAG,"Page-size = "+pageSize.length());
+            // assume if user set 999 of page-size, then i will put page size = default.
+            if (pageSize.length() >= 3){
+               pageSize = "2";
+            }
             String orderBy = mShared.getString(getString(R.string.news_order_by_key),getString(R.string.news_order_by_default));
             Uri uri = Uri.parse(REUEST_URI);
             Uri.Builder uriBuilder = uri.buildUpon() ;
@@ -103,7 +109,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             uriBuilder.appendQueryParameter("show-fields","thumbnail");
             uriBuilder.appendQueryParameter("show-blocks","body");
             uriBuilder.appendQueryParameter("api-key","test");
-            Log.i(TAG,"short uri "+ uriBuilder.toString());
+            // Check uri before go forward .
+            Log.i(TAG,"Now Uri = "+ uriBuilder.toString());
             return new NewsLoader(this, uriBuilder.toString());
         }
         return null;

@@ -27,11 +27,26 @@
     <!--All items in Order-by labels -->
     <string name="news_order_by_key" translatable="false">order-by</string>
     <string name="news_order_by_default" translatable="false">newest</string>
-    <string name="news_order_by_newest_label">newest</string>
-    <string name="news_order_by_oldest_label">oldest</string>
-    <string name="news_order_by_relevance_label">relevance</string>
+    <string name="news_order_by_newest_label">Newest</string>
+    <string name="news_order_by_oldest_label">Oldest</string>
+    <string name="news_order_by_relevance_label">Relevance</string>
     <!-- All items in order-by Values  -->
     <string name="news_order_by_newest_value">newest</string>
     <string name="news_order_by_oldest_value">oldest</string>
     <string name="news_order_by_relevance_value">relevance</string>
+
+    <!-- set Date From date-->
+    <string name="news_use_date_key">date</string>
+    <string name="news_use_date_label">Set Date</string>
+    <string name="news_use_from_date_key">from-date</string>
+    <string name="news_use_to_date_key">to-date</string>
+	<!-- Day / Month / Year-->
+    <string name="news_use_date_default">1\-1\-1017</string>
+    <string name="specific_msg">Set Specific Date</string>
+    <string name="btn_from_text">from-date</string>
+    <string name="hint_from_date">From Date</string>
+    <string name="btn_to_date_text">to-date</string>
+    <string name="hint_to_date">to date</string>
+
+
 </resources>
