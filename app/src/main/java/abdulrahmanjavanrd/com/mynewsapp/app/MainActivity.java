@@ -7,7 +7,6 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.Uri;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,8 +34,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     // TAG
     private static final String TAG = MainActivity.class.getSimpleName();
     // Fetch 50 pages,And get last news,Then get some data for each articles like title,section,date,img,web url.
-    private static final String REQUEST_URL = "https://content.guardianapis.com/search?q=/tags&page-size=50&order-by=newest&show-fields=shortUrl,thumbnail&show-blocks=body&api-key=test";
-    private static final String REUEST_URI =  "https://content.guardianapis.com/search?q=/tags";
+//    private static final String REQUEST_URL = "https://content.guardianapis.com/search?q=/tags&page-size=50&order-by=newest&show-fields=shortUrl,thumbnail&show-blocks=body&api-key=test";
+    private static final String REQUEST_URL =  "https://content.guardianapis.com/search?q=/tags";
     // Loader ID
     private static final int PROCESS_ID = 1;
     // ListView
@@ -102,10 +101,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                pageSize = "2";
             }
             String orderBy = mShared.getString(getString(R.string.news_order_by_key),getString(R.string.news_order_by_default));
-            Uri uri = Uri.parse(REUEST_URI);
+            String fromDate = mShared.getString(getString(R.string.news_use_from_date_key),"2018-01-12");
+            Uri uri = Uri.parse(REQUEST_URL);
             Uri.Builder uriBuilder = uri.buildUpon() ;
             uriBuilder.appendQueryParameter("order-by",orderBy);
             uriBuilder.appendQueryParameter("page-size",pageSize);
+            uriBuilder.appendQueryParameter("from-date",fromDate);
             uriBuilder.appendQueryParameter("show-fields","thumbnail");
             uriBuilder.appendQueryParameter("show-blocks","body");
             uriBuilder.appendQueryParameter("api-key","test");
@@ -120,9 +121,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     // When process finished.
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
-        if (data != null && !data.isEmpty()) {
-            progressBar.setVisibility(View.GONE);
+        //Cancel progressBar .
+        progressBar.setVisibility(View.GONE);
+        if (data == null ){
+            txvEmpty.setText(R.string.empty_msg_check_date);
+        }
+        /** Here @param data already Not null But check it's Not empty .*/
+         else if(!data.isEmpty()) {
             updateUi(data);
+        }
+        else{
             /** When complete process set text in the {@link #txvEmpty} */
             txvEmpty.setText(R.string.empty_msg);
         }

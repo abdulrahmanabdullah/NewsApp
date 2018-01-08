@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/settings_activity_id"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	>
+	android:orientation="vertical">
+
 	<android.support.v7.widget.Toolbar
-		android:theme="@style/toolBarTheme"
-		android:elevation="@dimen/card_elevation"
-		android:background="@color/colorPrimary"
 		android:id="@+id/toolBar_settings"
 		android:layout_width="match_parent"
-		android:layout_height="?attr/actionBarSize"/>
+		android:layout_height="?attr/actionBarSize"
+		android:background="@color/colorPrimary"
+		android:elevation="@dimen/card_elevation"
+		android:theme="@style/toolBarTheme" />
 
 
 	<!-- Fragment For SettingsFragment -> Preferences.  -->
 	<fragment
-		android:name="abdulrahmanjavanrd.com.mynewsapp.settings.SettingsFragment"
-		android:layout_marginBottom="5dp"
 		android:id="@+id/pref_fragment"
+		android:name="abdulrahmanjavanrd.com.mynewsapp.settings.SettingsFragment"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="5dp" />
 	<!-- By This way i can set DataPickerDialog without using DialogPreference-->
 	<fragment
 		android:id="@+id/date_fragment"
 		android:name="abdulrahmanjavanrd.com.mynewsapp.fragment.DateFragment"
-		android:layout_marginTop="5dp"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		android:layout_marginTop="5dp" />
 
 </LinearLayout>

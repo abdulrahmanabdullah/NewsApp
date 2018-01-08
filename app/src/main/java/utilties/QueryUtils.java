@@ -17,6 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 import abdulrahmanjavanrd.com.mynewsapp.model.News;
 
@@ -88,9 +89,11 @@ public class QueryUtils {
             } else {
                 Log.e(TAG, "Bad Connection Please check url");
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             Log.e(TAG, e.getMessage());
-        } finally {
+        }
+        finally {
             if (connection != null)
                 connection.disconnect();
             if (inputStream != null)
@@ -155,6 +158,7 @@ public class QueryUtils {
                 }
             } else {
                 Log.e(TAG, "JsonArray is empty,Please check syntax name of key.");
+                return null ;
             }
         } catch (JSONException e) {
             Log.e(TAG, "Failed JsonObject " + e.getMessage());

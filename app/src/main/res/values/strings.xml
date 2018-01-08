@@ -47,6 +47,7 @@
     <string name="hint_from_date">From Date</string>
     <string name="btn_to_date_text">to-date</string>
     <string name="hint_to_date">to date</string>
+	<string name="empty_msg_check_date">Please Enter Correct Date</string>
 
 
 </resources>
