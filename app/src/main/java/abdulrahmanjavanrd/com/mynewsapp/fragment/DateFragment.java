@@ -43,7 +43,7 @@ public class DateFragment extends Fragment {
         btnToDate = v.findViewById(R.id.btnToDate);
         // TODO: set TextView empty ..
         txvFromDate = v.findViewById(R.id.txvFromDate);
-        txvFromDate.setText("");
+        txvFromDate.setText(getString(R.string.news_use_date_default));
         txvToDate  = v.findViewById(R.id.txvToDate);
         context = getActivity() ;
         setFromDate();

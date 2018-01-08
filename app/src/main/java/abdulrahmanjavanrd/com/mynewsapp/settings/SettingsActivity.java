@@ -31,8 +31,8 @@ public class SettingsActivity extends AppCompatActivity {
             ac.setDisplayHomeAsUpEnabled(true);
         }
         manager = getFragmentManager() ;
-        manager.beginTransaction().add(R.id.pref_fragment,new SettingsFragment(),getResources().getString(R.string.setting_fragment_tag)).commit();
+        manager.beginTransaction().add(new SettingsFragment(),getResources().getString(R.string.setting_fragment_tag)).commit();
 //        manager = getFragmentManager() ;
-        manager.beginTransaction().add(R.id.date_fragment,new DateFragment(),"DateFragment").commit();
+        manager.beginTransaction().add(new DateFragment(),"DateFragment").commit();
     }
 }
