@@ -27,15 +27,14 @@ import abdulrahmanjavanrd.com.mynewsapp.R;
 import abdulrahmanjavanrd.com.mynewsapp.adapter.MyAdapter;
 import abdulrahmanjavanrd.com.mynewsapp.model.News;
 import abdulrahmanjavanrd.com.mynewsapp.settings.SettingsActivity;
-import loader.NewsLoader;
+import abdulrahmanjavanrd.com.mynewsapp.loader.NewsLoader;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
 
     // TAG
     private static final String TAG = MainActivity.class.getSimpleName();
-    // Fetch 50 pages,And get last news,Then get some data for each articles like title,section,date,img,web url.
-//    private static final String REQUEST_URL = "https://content.guardianapis.com/search?q=/tags&page-size=50&order-by=newest&show-fields=shortUrl,thumbnail&show-blocks=body&api-key=test";
-    private static final String REQUEST_URL =  "https://content.guardianapis.com/search?q=/tags";
+    // Main Request url .
+    private static final String REQUEST_URL = "https://content.guardianapis.com/search?q=/tags";
     // Loader ID
     private static final int PROCESS_ID = 1;
     // ListView
@@ -59,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         txvEmpty = findViewById(R.id.txvEmpty);
         // Now set empty text into the ListView .
         listView.setEmptyView(txvEmpty);
+        // First Check network connection .
         checkConnect();
 
     }
@@ -90,47 +90,37 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
         Log.i(TAG, "onCreateLoader");
         if (id == PROCESS_ID) {
-            Log.i(TAG, "Hi We receive this id = " + id);
-            //TODO: separate URL . Then send it to loader .show-fields=shortUrl,thumbnail&show-blocks=body&api-key=test";
             SharedPreferences mShared = PreferenceManager.getDefaultSharedPreferences(this);
-            String pageSize = mShared.getString(getString(R.string.news_page_size_key),getString(R.string.news_page_size_default));
-            // show me length of page-size :
-            Log.i(TAG,"Page-size = "+pageSize.length());
-            // assume if user set 999 of page-size, then i will put page size = default.
-            if (pageSize.length() >= 3){
-               pageSize = "2";
+            String pageSize = mShared.getString(getString(R.string.news_page_size_key), getString(R.string.news_page_size_default));
+            /** Assume if user set 999 of page-size, then i will set page size = 50.*/
+            if (pageSize.length() >= 3) {
+                pageSize = "50";
             }
-            String orderBy = mShared.getString(getString(R.string.news_order_by_key),getString(R.string.news_order_by_default));
-            String fromDate = mShared.getString(getString(R.string.news_use_from_date_key),"2018-01-12");
+            String orderBy = mShared.getString(getString(R.string.news_order_by_key), getString(R.string.news_order_by_default));
             Uri uri = Uri.parse(REQUEST_URL);
-            Uri.Builder uriBuilder = uri.buildUpon() ;
-            uriBuilder.appendQueryParameter("order-by",orderBy);
-            uriBuilder.appendQueryParameter("page-size",pageSize);
-            uriBuilder.appendQueryParameter("from-date",fromDate);
-            uriBuilder.appendQueryParameter("show-fields","thumbnail");
-            uriBuilder.appendQueryParameter("show-blocks","body");
-            uriBuilder.appendQueryParameter("api-key","test");
+            Uri.Builder uriBuilder = uri.buildUpon();
+            uriBuilder.appendQueryParameter("order-by", orderBy);
+            uriBuilder.appendQueryParameter("page-size", pageSize);
+            uriBuilder.appendQueryParameter("show-fields", "thumbnail");
+            uriBuilder.appendQueryParameter("show-blocks", "body");
+            uriBuilder.appendQueryParameter("api-key", "test");
             // Check uri before go forward .
-            Log.i(TAG,"Now Uri = "+ uriBuilder.toString());
+            Log.i(TAG, "Now Uri = " + uriBuilder.toString());
             return new NewsLoader(this, uriBuilder.toString());
         }
         return null;
     }
 
 
-    // When process finished.
+    // When processing finished.
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
         //Cancel progressBar .
         progressBar.setVisibility(View.GONE);
-        if (data == null ){
-            txvEmpty.setText(R.string.empty_msg_check_date);
-        }
         /** Here @param data already Not null But check it's Not empty .*/
-         else if(!data.isEmpty()) {
+        if (data != null && !data.isEmpty()) {
             updateUi(data);
-        }
-        else{
+        } else {
             /** When complete process set text in the {@link #txvEmpty} */
             txvEmpty.setText(R.string.empty_msg);
         }
@@ -151,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     /**
      * @return true if user have connection
-     * then start loader and complete process in normal mode .
+     * then start abdulrahmanjavanrd.com.mynewsapp.loader and complete process in normal mode .
      * Otherwise return false, and appear the message to tall user what happen .
      */
     private boolean checkConnect() {
@@ -174,18 +164,18 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.settings_menu,menu);
-        return true ;
+        getMenuInflater().inflate(R.menu.settings_menu, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.settings_menu){
-            Intent i = new Intent(this,SettingsActivity.class );
+        if (id == R.id.settings_menu) {
+            Intent i = new Intent(this, SettingsActivity.class);
             startActivity(i);
-            return true ;
+            return true;
         }
-        return true ;
+        return true;
     }
 }

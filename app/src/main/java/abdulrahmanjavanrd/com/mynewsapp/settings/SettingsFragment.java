@@ -7,6 +7,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+
 import abdulrahmanjavanrd.com.mynewsapp.R;
 
 /**

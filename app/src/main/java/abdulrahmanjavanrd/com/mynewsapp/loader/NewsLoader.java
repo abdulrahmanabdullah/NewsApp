@@ -1,4 +1,4 @@
-package loader;
+package abdulrahmanjavanrd.com.mynewsapp.loader;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.util.Log;
 import java.util.List;
 
 import abdulrahmanjavanrd.com.mynewsapp.model.News;
-import utilties.QueryUtils;
+import abdulrahmanjavanrd.com.mynewsapp.utilties.QueryUtils;
 
 /**
  * @author Abdulrahman.A on 04/01/2018.

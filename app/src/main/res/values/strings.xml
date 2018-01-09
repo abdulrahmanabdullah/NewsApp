@@ -10,17 +10,17 @@
     <string name="empty_msg">No new News.</string>
     <string name="check_network_connection">Can\'t load new data, Please check network connection.</string>
     <!-- Setting Name .-->
-	<string name="settings_menu">Settings</string>
+    <string name="settings_menu">Settings</string>
     <!-- SubTitle Message -->
     <string name="user_preferences">User Preferences</string>
     <!--Page Size -->
-	<string name="news_page_size_label">Page Size</string>
+    <string name="news_page_size_label">Page Size</string>
     <string name="news_page_size_key" translatable="false">page-size</string>
     <string name="news_page_size_default" translatable="false">2</string>
 
     <!--FragmentManager Tag -->
     <string name="setting_fragment_tag">SettingsFragment</string>
-    
+
     <!-- List Preferences Title -->
     <string name="news_order_by_title">Order By</string>
 
@@ -35,19 +35,7 @@
     <string name="news_order_by_oldest_value">oldest</string>
     <string name="news_order_by_relevance_value">relevance</string>
 
-    <!-- set Date From date-->
-    <string name="news_use_date_key">date</string>
-    <string name="news_use_date_label">Set Date</string>
-    <string name="news_use_from_date_key">from-date</string>
-    <string name="news_use_to_date_key">to-date</string>
-	<!-- Day / Month / Year-->
-    <string name="news_use_date_default">1\-1\-1017</string>
-    <string name="specific_msg">Set Specific Date</string>
-    <string name="btn_from_text">from-date</string>
-    <string name="hint_from_date">From Date</string>
-    <string name="btn_to_date_text">to-date</string>
-    <string name="hint_to_date">to date</string>
-	<string name="empty_msg_check_date">Please Enter Correct Date</string>
+    <string name="empty_msg_check_date">No any news</string>
 
 
 </resources>

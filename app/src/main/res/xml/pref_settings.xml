@@ -15,7 +15,5 @@
 		android:entries="@array/news_order_by_arr_label"
 		android:entryValues="@array/news_order_by_arr_values"
 		android:key="@string/news_order_by_key"
-		android:summary="----"
 		android:title="@string/news_order_by_title" />
-
 </PreferenceScreen>
