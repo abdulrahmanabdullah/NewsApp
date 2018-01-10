@@ -29,6 +29,9 @@ import abdulrahmanjavanrd.com.mynewsapp.model.News;
 import abdulrahmanjavanrd.com.mynewsapp.settings.SettingsActivity;
 import abdulrahmanjavanrd.com.mynewsapp.loader.NewsLoader;
 
+/**
+ * @author Abdulrahman.A
+ */
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
 
     // TAG
@@ -103,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             uriBuilder.appendQueryParameter("page-size", pageSize);
             uriBuilder.appendQueryParameter("show-fields", "thumbnail");
             uriBuilder.appendQueryParameter("show-blocks", "body");
-            uriBuilder.appendQueryParameter("show-tags", "publication");
+            uriBuilder.appendQueryParameter("show-tags", "contributor");
             uriBuilder.appendQueryParameter("api-key", "test");
             // Check uri before go forward .
             Log.i(TAG, "Now Uri = " + uriBuilder.toString());

@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import abdulrahmanjavanrd.com.mynewsapp.R;
 
 /**
- * Created by nfs05 on 07/01/2018.
+ * @author Abdulrahman.A on 07/01/2018.
  */
 
 public class SettingsActivity extends AppCompatActivity {

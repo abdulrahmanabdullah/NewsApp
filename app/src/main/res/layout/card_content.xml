@@ -104,7 +104,6 @@
         android:paddingBottom="8dp"
         android:text="@string/txt_publisher"
         android:textColor="@color/secondaryText"
-        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvSection"
         tools:text="The Guardian" />

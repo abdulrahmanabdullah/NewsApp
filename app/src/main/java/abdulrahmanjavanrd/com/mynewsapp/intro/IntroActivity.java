@@ -3,12 +3,13 @@ package abdulrahmanjavanrd.com.mynewsapp.intro;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import abdulrahmanjavanrd.com.mynewsapp.R;
 import abdulrahmanjavanrd.com.mynewsapp.app.MainActivity;
 
-
+/**
+ * @author Abdulrahman.A
+ */
 public class IntroActivity extends AppCompatActivity {
 
     private final String TAG = IntroActivity.class.getSimpleName();

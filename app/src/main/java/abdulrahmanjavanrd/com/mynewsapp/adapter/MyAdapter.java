@@ -77,17 +77,8 @@ public class MyAdapter extends BaseAdapter {
         String tag = context.getResources().getString(R.string.hash_tag) + currentObject.getSection();
         holder.txvSection.setText(tag);
         holder.txvDate.setText(currentObject.getDate());
-        /**
-         * {@link holder.txvPublisher} is not visible, when any articles have publication,
-         *  it will appear and set publisher name with hashTag .
-         */
-        if (!currentObject.getWebPublisher().equals("") && currentObject.getWebPublisher() != null) {
-            holder.txvPublisher.setVisibility(View.VISIBLE);
-            String publisher = context.getResources().getString(R.string.hash_tag) + "publication:" + currentObject.getWebPublisher();
-            holder.txvPublisher.setText(publisher);
-        } else {
-            holder.txvPublisher.setVisibility(View.GONE);
-        }
+        String publisher =  "By: " + currentObject.getWebPublisher();
+        holder.txvPublisher.setText(publisher);
         return convertView;
     }
 
@@ -125,7 +116,6 @@ public class MyAdapter extends BaseAdapter {
      */
     public void setListOfNews(List<News> mList) {
         listOfNews.addAll(mList);
-//       notifyDataSetChanged();
     }
 
     // ViewHolder Class .

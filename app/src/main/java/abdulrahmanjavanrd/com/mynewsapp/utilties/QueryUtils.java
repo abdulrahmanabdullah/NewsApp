@@ -22,7 +22,7 @@ import java.util.List;
 import abdulrahmanjavanrd.com.mynewsapp.model.News;
 
 /**
- * Created by nfs05 on 04/01/2018.
+ * @author Abdulrahman.A on 04/01/2018.
  */
 
 public class QueryUtils {
