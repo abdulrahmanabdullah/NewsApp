@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             uriBuilder.appendQueryParameter("page-size", pageSize);
             uriBuilder.appendQueryParameter("show-fields", "thumbnail");
             uriBuilder.appendQueryParameter("show-blocks", "body");
+            uriBuilder.appendQueryParameter("show-tags", "publication");
             uriBuilder.appendQueryParameter("api-key", "test");
             // Check uri before go forward .
             Log.i(TAG, "Now Uri = " + uriBuilder.toString());

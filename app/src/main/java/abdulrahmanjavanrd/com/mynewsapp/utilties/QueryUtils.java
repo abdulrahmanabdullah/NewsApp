@@ -2,6 +2,7 @@ package abdulrahmanjavanrd.com.mynewsapp.utilties;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -87,6 +88,7 @@ public class QueryUtils {
                 response = convertStreamToData(inputStream);
             } else {
                 Log.e(TAG, "Bad Connection Please check url");
+                Log.e(TAG, "Error of Stream ##" + connection.getErrorStream());
             }
         } catch (IOException e) {
             Log.e(TAG, e.getMessage());
@@ -126,6 +128,8 @@ public class QueryUtils {
         if (TextUtils.isEmpty(jsonUrl)) {
             return null;
         }
+        // declare publisher name ;
+        String webPublisher;
         try {
             JSONObject baseKey = new JSONObject(jsonUrl);
             JSONObject root = baseKey.getJSONObject("response");
@@ -142,6 +146,18 @@ public class QueryUtils {
                     // Now fetch image and Article summary
                     JSONObject fields = index.getJSONObject("fields");
                     String thumbnail = fields.getString("thumbnail");
+                    //get webTitle from array tags ..
+                    JSONArray tags = index.getJSONArray("tags");
+                    /** Create new json object to go inside the tags array, And get the publisher name,
+                     *     First check if tags array contain any elements OR not if yes save the value
+                     *     in {@link webPublisher} else set {@link webPublisher} empty .*/
+                    if (tags.length() > 0) {
+                        JSONObject tagIndex = tags.getJSONObject(0);
+                        webPublisher = tagIndex.getString("webTitle");
+                        Log.i(TAG, "## webAuthor ## =>>" + webPublisher);
+                    } else {
+                        webPublisher = "";
+                    }
                     // Now fetch summary text from blocks
                     JSONObject blocks = index.getJSONObject("blocks");
                     // Now get all array inside this blocks .
@@ -151,15 +167,13 @@ public class QueryUtils {
                     // Now i can access the all elements inside this array .
                     String articleSummary = secondIndex.getString("bodyTextSummary");
                     // Now save this values in News class .
-                    newsList.add(new News(webTitle, articleSummary, sectionName, thumbnail, date, webUrl));
+                    newsList.add(new News(webTitle, articleSummary, sectionName, thumbnail, date, webUrl, webPublisher));
                 }
             } else {
                 Log.e(TAG, "JsonArray is empty,Please check syntax name of key.");
-//                return null; // when JsonArray is empty .
             }
         } catch (JSONException e) {
             Log.e(TAG, "Failed JsonObject " + e.getMessage());
-//            return null; // When Json to find value .
         }
         return newsList;
     }

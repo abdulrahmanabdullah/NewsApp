@@ -36,6 +36,7 @@
     <string name="news_order_by_relevance_value">relevance</string>
 
     <string name="empty_msg_check_date">No any news</string>
+    <string name="txt_publisher"> </string>
 
 
 </resources>

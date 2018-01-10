@@ -71,7 +71,7 @@
     <TextView
         android:id="@+id/txvSection"
         android:layout_width="wrap_content"
-        android:layout_height="18dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif"
@@ -85,7 +85,7 @@
         android:id="@+id/txvDate"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginStart="16dp"
         android:fontFamily="sans-serif"
         android:text="@string/article_date"
@@ -93,5 +93,20 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/txvSection"
         app:layout_constraintRight_toRightOf="parent"
         tools:text="1-1-2018:16:15 Am" />
+
+    <TextView
+        android:id="@+id/txvPublisher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif"
+        android:paddingBottom="8dp"
+        android:text="@string/txt_publisher"
+        android:textColor="@color/secondaryText"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvSection"
+        tools:text="The Guardian" />
 
 </android.support.constraint.ConstraintLayout>

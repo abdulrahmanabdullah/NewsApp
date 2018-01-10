@@ -17,14 +17,17 @@ public class News {
     private String date ;
     // web url
     private String webUrl ;
+    // web publisher .
+    private String webPublisher ;
 
-    public News(String title,String summary , String section, String image, String date,String webUrl) {
+    public News(String title,String summary , String section, String image, String date,String webUrl,String webPublisher) {
         this.title = title;
         this.summary = summary;
         this.section = section;
         this.image = image;
         this.date = date;
         this.webUrl = webUrl ;
+        this.webPublisher = webPublisher ;
     }
 
     public String getTitle() {
@@ -49,5 +52,9 @@ public class News {
 
     public String getWebUrl() {
         return webUrl;
+    }
+
+    public String getWebPublisher() {
+        return webPublisher;
     }
 }

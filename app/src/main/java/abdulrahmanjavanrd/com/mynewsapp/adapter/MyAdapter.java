@@ -58,6 +58,7 @@ public class MyAdapter extends BaseAdapter {
             holder.txvSummary = convertView.findViewById(R.id.txvSummary);
             holder.txvSection = convertView.findViewById(R.id.txvSection);
             holder.txvDate = convertView.findViewById(R.id.txvDate);
+            holder.txvPublisher = convertView.findViewById(R.id.txvPublisher);
             convertView.setTag(holder);
         } else {
             holder = (MyViewHolder) convertView.getTag();
@@ -76,6 +77,17 @@ public class MyAdapter extends BaseAdapter {
         String tag = context.getResources().getString(R.string.hash_tag) + currentObject.getSection();
         holder.txvSection.setText(tag);
         holder.txvDate.setText(currentObject.getDate());
+        /**
+         * {@link holder.txvPublisher} is not visible, when any articles have publication,
+         *  it will appear and set publisher name with hashTag .
+         */
+        if (!currentObject.getWebPublisher().equals("") && currentObject.getWebPublisher() != null) {
+            holder.txvPublisher.setVisibility(View.VISIBLE);
+            String publisher = context.getResources().getString(R.string.hash_tag) + "publication:" + currentObject.getWebPublisher();
+            holder.txvPublisher.setText(publisher);
+        } else {
+            holder.txvPublisher.setVisibility(View.GONE);
+        }
         return convertView;
     }
 
@@ -83,6 +95,7 @@ public class MyAdapter extends BaseAdapter {
     /**
      * <p>In This method i try to convert Long text to small </p>
      * I wrote some functions to help me , I hope it's true.
+     *
      * @param summary of article
      * @return small text .
      */
@@ -111,13 +124,13 @@ public class MyAdapter extends BaseAdapter {
      * @param mList List of news I call this method in onLoaderRest .
      */
     public void setListOfNews(List<News> mList) {
-       listOfNews.addAll(mList);
+        listOfNews.addAll(mList);
 //       notifyDataSetChanged();
     }
 
     // ViewHolder Class .
     static class MyViewHolder {
         ImageView imageView;
-        TextView txvTitle, txvSummary, txvSection, txvDate;
+        TextView txvTitle, txvSummary, txvSection, txvDate, txvPublisher;
     }
 }
